@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Tutorial</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js"></script>
+  </head>
+
+  <body>
+    <!-- The sidebar -->
+    <div class="sidebar">
+      <a href="../index.html">Inicio</a>
+      <h1 class="git">Git</h1>
+      <a href="./git.html">Fundamentos</a>
+      <a href="./configuracion.html">Instalación y configuración</a>
+      <a href="./basics.html">Comandos Básicos</a>
+      <a href="./contrasenas.html">Repositorios Remotos y Contraseñas</a>
+      <a href="./gitignore.html">.gitignore</a>
+    </div>
+
+    <main>
+      <div>
+        <section id="gitignore">
+          <h1>¿Cómo hacer para que Git ignore ciertos archivos?</h1>
+          <p>
+            A veces tendrás algún tipo de archivo que no quieres que Git añada
+            automáticamente o siquiera aparezca como Untracked. Puede darse en
+            casos que tengas archivos o directorios que contengan contraseñas u
+            otra información que por alguna razón no necesites/quieras mostrar.
+            En estos casos puedes crear un archivo llamado literalmente
+            <strong>.gitignore</strong> con el punto incluido al principio para
+            que liste patrones a considerar. Ahora si por ejemplo tenemos un
+            archivo llamado "contraseñas.txt" podemos escribir exactamente el
+            mismo nombre dentro del archivo .gitignore y lo ignorará
+            completamente. Las líneas que comienzan con # se ignoran y actúan
+            como comentarios. Hay muchísimos patrones más complejos que puedes
+            usar. Por ejemplo, *.[oa] es para que ignore todos aquellos archivos
+            que terminen con ".o" o ".a". Tienes una lista de patrones
+            pre-armados en este
+            <a href="https://github.com/github/gitignore">link</a> y si quieres
+            profundizar más te recomiendo aprender sobre expresiones regulares.
+          </p>
+          <img src="../assets/git/gitignore.png" alt="ejemplo de uso .gitignore" />
+        </section>
+      </div>
+
+      <nav class="section-nav">
+        <ol>
+          <li><a href="#gitignore">¿Cómo hacer para que Git ignore ciertos archivos?</a></li>
+        </ol>
+      </nav>
+    </main>
+  </body>
+</html>

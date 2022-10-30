@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Tutorial</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js"></script>
+  </head>
+
+  <body>
+    <!-- The sidebar -->
+    <div class="sidebar">
+      <a href="../index.html">Inicio</a>
+      <h1 class="git">Git</h1>
+      <a href="./git.html">Fundamentos</a>
+      <a href="./configuracion.html">Instalación y configuración</a>
+      <a href="./basics.html">Comandos Básicos</a>
+      <a href="./contrasenas.html">Repositorios Remotos y Contraseñas</a>
+      <a href="./gitignore.html">.gitignore</a>
+    </div>
+
+    <main>
+      <div>
+        <h1>Repositorios Remotos y Contraseñas</h1>
+        <img src="../assets/git/urls.png" alt="" />
+        <p>
+          Cuando vas a trabajar con un repositorio remoto puedes elegir entre 3
+          opciones:
+        </p>
+        <section id="https">
+          <h2>HTTPS URL</h2>
+          <p>
+            Cuando ejecutes <code>git clone</code>, <code>git fetch</code>,
+            <code>git pull</code> o <code>git push</code> en un repositorio
+            remoto mediante URL HTTPS en la línea de comando, Git te pedirá tu
+            nombre de usuario y contraseña de GitHub. Cuando Git te solicite tu
+            contraseña, debes ingresar tu
+            <a
+              href="https://docs.github.com/es/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token"
+              target="_blank"
+              >token de acceso personal</a
+            >.
+          </p>
+        </section>
+        <section id="sshurl">
+          <h2>SSH URL</h2>
+          <p>
+            <a
+              href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh"
+              target="_blank"
+              >(SSH info)</a
+            >
+            este método es el más complicado para novatos. Es un método
+            importante a veces porque, por ejemplo, es la forma en que el código
+            se distribuye y se envía a los servidores de producción, como la
+            implementación en Heroku. Aquí vas a usar tu constraseña SSH en
+            lugar de usuario/contraseña de GitHub. Cada vez que requieras usar
+            este método deberías recurrir a la
+            <a
+              href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"
+              target="_blank"
+              >documentación de GitHub</a
+            >.
+          </p>
+          <p>
+            Cuando le haces <code>git clone</code>, <code>git fetch</code>,
+            <code>git pull</code> o <code>git push</code> a un repositorio
+            remoto utilizando SSH URL, te solicitarán la contraseña de tu clave
+            SSH. Cuando configures SSH, deberás generar una llave privada y
+            agregarla al ssh-agent. También debes agregar la llave pública a tu
+            cuenta en GitHub antes de usar la clave. Para mantener la seguridad
+            de la cuenta, puedes revisar regularmente tu lista de claves SSH y
+            revocar cualquier clave que no sea válida o que haya sido
+            comprometida. Si no has usado tu clave SSH durante un año, GitHub
+            eliminará automáticamente tu clave SSH inactiva como medida de
+            seguridad. Cuando generas una clave SSH, puedes agregar una
+            contraseña para proteger aún más la clave. Cada vez que uses este
+            método, debes ingresar la contraseña. Si no deseas ingresar la
+            contraseña cada vez, puedes agregar tu clave al ssh-agent el cual
+            administra tus claves SSH y recuerda tu contraseña.
+          </p>
+          <p>
+            Si configuras por primera vez SSH sigue estos resumidos pasos (si
+            tienes problemas recurre a la documentación de GitHub que marqué):
+          </p>
+          <ol>
+            <li>Abres Git Bash</li>
+            <li>
+              Escribes el siguiente comando (reemplaza tu email real de GitHub):
+            </li>
+            <p class="code">
+              <code>ssh-keygen -t ed25519 -C "your_email@example.com"</code>
+            </p>
+            <li>
+              Das enter aceptando la ubicación por defecto (si es que no deseas
+              cambiarla)
+            </li>
+            <li>Ingresas una contraseña(opcional pero recomendado)</li>
+          </ol>
+          <p><u>Configuración del ssh-agent (opcional):</u></p>
+          <ul>
+            <li>
+              Asegurate de que el ssh-agent se esté ejecutando (puede usar las
+              instrucciones de
+              <a
+                href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases"
+                >"Inicio automático del ssh-agent"</a
+              >
+              o iniciarlo manualmente como te muestro a continuación):
+            </li>
+            <p class="code"><code>eval "$(ssh-agent -s)"</code></p>
+            <li>Agregas tu llave privada al ssh-agent:</li>
+          </ul>
+
+          <p class="code"><code>ssh-add ~/.ssh/id_ed25519</code></p>
+          <p>
+            La virgulilla(~) te lleva a tu carpeta home, luego "/" te dirige a
+            la .ssh (la carpeta escondida con tus llaves) y finalmente
+            "id_ed25519" es el archivo que contiene tu llave privada (no la
+            compartas nunca).
+          </p>
+          Finalmente vas a
+          <a
+            href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account"
+            >agregar tu llave pública a tu cuenta de GitHub</a
+          >. Simplemente dirígete a la configuración de GitHub y ahí buscas "SSH
+          and GPG keys". Puede que te preguntes dónde está esa clave pública.
+          ¿Recuerdas cuando introdujiste el primer comando que te creó un par de
+          llaves y las guardo en una ubicación predeterminada (suponiendo que
+          elegiste esa ubicación "predeterminada")? Probablemente se vea algo
+          así /c/Users/"TU USUARIO"/.ssh/id_ed25519.pub , tienes que ir a esa
+          ubicación y "abrir con" bloc de notas el que tiene la extensión ".pub"
+          que es tu llave pública. La otra es tu llave privada la cual NO DEBES
+          COMPARTIR. Entonces copias el contenido de la clave pública tal como
+          aparece y lo pegas en GitHub.
+          <p>
+            Consejo: deberías tener una par de llaves pública/privada diferente
+            en cada computadora que uses.
+          </p>
+        </section>
+        <section id="githubcli">
+          <h2>GitHub CLI</h2>
+          <p>
+            Si te encuentras en Windows debes instalar
+            <a href="https://cli.github.com/">GitHub CLI</a> y luego en la
+            consola cuando intentes clonar con este método te pedirá
+            autenticación con <code>gh auth login</code>, ahí sigues los pasos
+            que te pida.
+          </p>
+          <img src="../assets/git/githubcli.png" alt="" />
+        </section>
+        <section id="urlchange">
+          <h2>¿Cómo cambiar URL? (pasar de HTTPS a SSH)</h2>
+          <p>
+            Si estabas trabajando por ejemplo con HTTPS URL y ahora cambiaste a
+            SSH URL vas a querer cambiar la URL. Verifica nombre y URL del
+            remoto con:
+          </p>
+          <p class="code"><code>git remote -v</code></p>
+          <p>Cambia URL con:</p>
+          <p class="code"><code>git remote set-url [nombre-remoto] [SSH-URL]</code></p>
+          <p class="code"><code>git remote set-url origin git@github.com:BenJokek/Curso-basico-de-Git-y-GitHub.git</code></p>
+        </section>
+      </div>
+
+      <!-- NAV SPY -->
+
+      <nav class="section-nav">
+        <ol>
+          <li><a href="#https">HTTPS URL</a></li>
+          <li><a href="#sshurl">SSH URL</a></li>
+          <li><a href="#githubcli">GitHub CLI</a></li>
+          <li>
+            <a href="#urlchange"> ¿Cómo cambiar URL? (pasar de HTTPS a SSH) </a>
+          </li>
+        </ol>
+      </nav>
+    </main>
+  </body>
+</html>

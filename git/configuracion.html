@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Tutorial</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js"></script>
+  </head>
+
+  <body>
+    <!-- The sidebar -->
+    <div class="sidebar">
+      <a href="../index.html">Inicio</a>
+      <h1 class="git">Git</h1>
+      <a href="./git.html">Fundamentos</a>
+      <a href="./configuracion.html">Instalación y configuración</a>
+      <a href="./basics.html">Comandos Básicos</a>
+      <a href="./contrasenas.html">Repositorios Remotos y Contraseñas</a>
+      <a href="./gitignore.html">.gitignore</a>
+    </div>
+
+    <main>
+      <div>
+        <section id="basic">
+          <h1>Instalación y configuración de Git</h1>
+          <p>
+            Para instalar Git en Windows primero te dirijes a la página
+            <a href="https://git-scm.com/download/win">git-scm.com</a>
+            . Vas a descargar la última versión para Windows. Elijo la versión
+            "64-bit Git for Windows Setup" en mi caso. En el proceso de
+            instalación puedes darle siguiente a todo.
+          </p>
+          <p>
+            Al final te abre una consola (si es que marcaste que te abra Git
+            Bash) la cual le podés hacer zoom manteniendo <kbd>Ctrl</kbd> +
+            ruedita del mouse o <kbd>+</kbd>. Lo primero que vamos a hacer es
+            verificar tener Git instalado en su última versión con el comando:
+          </p>
+          <p class="code"><code>git --version </code></p>
+          <p>
+            Luego vamos a identificar nuestro nombre y correo electrónico para
+            que luego sepan cual fue la persona que realizó cierta modificación:
+          </p>
+          <p class="code">
+            <code>git config --global user.name "Tu_nombre"</code>
+          </p>
+          <p class="code">
+            <code>git config --global user.email "tu_email@gmail.com"</code>
+          </p>
+          <p>
+            Uso el comando global porque quiero que se quede guardado en mi
+            computadora de manera global y que no me lo vuelvan a pedir.
+            Suponiendo que quieras tener una identidad diferente en cada
+            proyecto puedes eliminar el comando global.
+          </p>
+          <p>
+            También voy a establecer el coloreado automático de la línea de
+            comandos para facilitar la revisión en Git:
+          </p>
+          <p class="code">
+            <code>git config --global color.ui auto</code>
+          </p>
+          <p>
+            Si quieres que tu rama por defecto, al inicializar un repositorio,
+            sea siempre
+            <strong>main</strong> en vez de <strong>master</strong> usa el
+            comando:
+          </p>
+          <p class="code">
+            <code>git config --global init.defaultBranch main</code>
+          </p>
+          <p>Para comprobar tu configuración puedes escribir el comando:</p>
+          <p class="code"><code>git config --list</code></p>
+          <div class="diviframe" id="video">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/5WY_xD-0Krw"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </section>
+      </div>
+
+      <nav class="section-nav">
+        <ol>
+          <li><a href="#basic">Instalación y configuración</a></li>
+          <li><a href="#video">Video</a></li>
+        </ol>
+      </nav>
+    </main>
+  </body>
+</html>

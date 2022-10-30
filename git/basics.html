@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Tutorial</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js"></script>
+  </head>
+
+  <body>
+    <!-- The sidebar -->
+    <div class="sidebar">
+      <a href="../index.html">Inicio</a>
+      <h1 class="git">Git</h1>
+      <a href="./git.html">Fundamentos</a>
+      <a href="./configuracion.html">Instalación y configuración</a>
+      <a href="./basics.html">Comandos Básicos</a>
+      <a href="./contrasenas.html">Repositorios Remotos y Contraseñas</a>
+      <a href="./gitignore.html">.gitignore</a>
+    </div>
+
+    <main>
+      <div>
+        <section id="comandosbasicos">
+          <h1>Comandos Básicos de Git(entorno local)</h1>
+          <ul>
+            <li>
+              <code>git status</code>: muestra el estado del Working Directory y
+              el Staging Area. Permite ver qué cambios se han realizado, cuáles
+              no y qué archivos no están siendo rastreados por Git.
+            </li>
+            <li>
+              <code>git add </code>: agrega un cambio del Working Directory al
+              Staging Area. Le dice a Git que desea incluir algún archivo en el
+              próximo commit. Los cambios no se registran hasta que ejecutas git
+              commit.
+            </li>
+            <li>
+              <code>git restore</code>: eliminar los cambios que hayamos hecho
+              en el Working Directory y volver al estado en el que estaba en la
+              última confirmación (o cuando estaba recién clonado, o como sea
+              que haya llegado a tu directorio de trabajo).
+            </li>
+            <li>
+              <code>git diff</code>: en esta ocasión se usará para ver la
+              diferencia entre lo que está en el Staging Area y en el Working
+              Directory.
+            </li>
+            <li>
+              <code>git commit -m "mensaje descriptivo"</code>: captura una
+              "instantánea" de los cambios realizados actualmente en el
+              proyecto. Las instantáneas son como versiones "seguras" de un
+              proyecto: Git nunca las cambiará a menos que se lo solicite
+              explícitamente.
+            </li>
+            <li><code>git log</code>: ver el histórico de commits.</li>
+            <li>
+              <code>git diff --staged</code>: ver diferencia entre el último
+              commit y lo que tengo ahora en el Staging Area.
+            </li>
+          </ul>
+          <h2>Comandos Básicos de la Consola (recomendado aprender):</h2>
+          <ul>
+            <li>
+              <code>pwd</code> (print working directory): imprime la ruta del
+              directorio de trabajo actual, o sea te dice donde estás parado.
+            </li>
+            <li>
+              <code>ls -a</code> (list all): muestra todos los archivos y
+              directorios incluyendo a los que están ocultos.
+            </li>
+            <li>
+              <code>cd [nombre-subdirectorio]</code> (change directory): te
+              mueve al subdirectorio especificado. Básicamente lo usas para
+              moverte entre carpetas.
+            </li>
+            <li><code>cd ..</code>: moverte hacia atrás.</li>
+            <li>
+              <code>mkdir [nombre-directorio]</code> (make directory): crear un
+              directorio (carpeta) nuevo.
+            </li>
+            <li>
+              <code>touch [nombre-archivo]</code>: crear un archivo nuevo.
+              Ejemplo: touch notas.txt para crear un archivo de texto llamado
+              "notas".
+            </li>
+            <li>
+              <code>cat [nombre-archivo]</code>: leer el contenido de un
+              archivo. Ej: cat notas.txt (te mostrará su contenido suponiendo
+              que no esté vacío).
+            </li>
+            <li>
+              <code>cat > [nombre-archivo]</code>: escribir dentro de un archivo
+              desde la misma consola. Para guardar y salir del modo escritura
+              presiona <kbd>Ctrl</kbd> + <kbd>D</kbd>.
+            </li>
+          </ul>
+          <p>
+            Podemos empezar a usar Git de dos maneras. La primera es
+            inicializando un <strong>Git Directory/Repository</strong> en un
+            directorio o carpeta existente. La segunda es clonar un repositorio
+            existente que use Git desde otro servidor (se verá más adelante).
+          </p>
+          <p>
+            En esta sección usaremos la <strong>Inicialización</strong>. Vamos a
+            crear un directorio llamado "Proyecto" en el escritorio y vamos a
+            navegar desde nuestra consola Git Bash hasta dentro de esa carpeta.
+            Podemos hacerlo fácilmente con el comando <code>cd</code> y
+            arrastrando la carpeta a la consola o bien hacemos click derecho
+            sobre el directorio y luego en "abrir con Git Bash".
+          </p>
+          <p class="code">
+            <code>cd (arrastramos la carpeta a la consola)</code>
+          </p>
+          <p>
+            Una vez dentro del directorio "Proyecto" desde nuestra consola vamos
+            a inicializar un <strong>Git Directory/Repository</strong> con el
+            comando:
+          </p>
+          <p class="code"><code>git init</code></p>
+          <p>
+            Luego creamos un archivo de texto llamado "notas.txt". El
+            repositorio de Git no sabe que existe el archivo "notas.txt" porque
+            está en estado <strong>Untracked</strong>. Podemos comprobarlo con
+            el comando:
+          </p>
+          <p class="code"><code>git status</code></p>
+          <img src="../assets/git/1.png" alt="" />
+          <p>
+            Este comando te brinda la siguiente información: la rama en donde te
+            encuentras (por defecto es la main o master), que todavía no se han
+            hecho commits y que tenemos un archivo <strong>Untracked</strong>.
+            También nos menciona que para empezar a hacerle seguimiento debemos
+            escribir un comando, hagámoslo:
+          </p>
+          <p class="code"><code>git add notas.txt</code></p>
+          <img src="../assets/git/2.png" alt="" />
+          <p>
+            Ahora Git COPIÓ nuestro archivo al <strong>Staging Area</strong>, se
+            encuentra en un estado de <strong>Staged</strong> y está esperando
+            para ser trasladado al <strong>Git Directory</strong>.
+          </p>
+          <p>
+            Si ponemos de nuevo el comando <code>git status</code> ahora nos
+            dirá que tenemos el archivo esperando a ser
+            <strong>Committed</strong> y que podemos usar el siguiente comando
+            para que vuelva a estar <strong>Untracked</strong>:
+          </p>
+          <p class="code"><code>git rm --cached [file]</code></p>
+          <img src="../assets/git/3.png" alt="" />
+          <p>
+            Este comando puede ser muy útil por ejemplo si olvidaste añadir algo
+            en tu archivo <a href="./gitignore.html">.gitignore</a> y lo
+            mandaste al <strong>Staging Area</strong> accidentalmente.
+          </p>
+          <p>
+            Ahora para mandar el archivo al
+            <strong>Git Directory</strong> (sacarle una "foto" en su estado
+            actual) y que quede guardado en la "base de datos" vamos a usar el
+            comando:
+          </p>
+          <p class="code"><code>git commit -m "mensaje descriptivo"</code></p>
+          <img src="../assets/git/4.png" alt="" />
+          <p>
+            Entre las comillas debemos comentar que cambios realizamos. Más
+            adelante explicaré como debería ser redactado. Ahora nuestro archivo
+            se encuentra en el <strong>Git Directory</strong> guardado en un
+            estado de <strong>Committed</strong> y <strong>Unmodified</strong>.
+            Si escribimos de nuevo <code>git status</code> nos dirá que nuestro
+            arbol de trabajo está limpio porque no tenemos nada rastraeado y
+            modificado en el <strong>Working Directory</strong> ni en
+            <strong>Staging Area</strong>.
+          </p>
+          <img src="../assets/git/5.png" alt="" />
+          <p>
+            Después de haber hecho alguna confirmación, o si has clonado un
+            repositorio que ya tenía un histórico de confirmaciones, quizás
+            quieras mirar el historial de confirmaciones con:
+          </p>
+          <p class="code"><code>git log notas.txt</code></p>
+          <p>
+            Ahí nos muestra datos como el hash (números y letras que identifican
+            a un commit en específico), la rama (con un HEAD que es como un
+            puntero que te indica que te encuentras en la rama main en este
+            caso), el autor, la fecha y el mensaje del commit. Si introduces el
+            comando
+            <code>git log</code> sin más te muestra el historial de "fotos" del
+            <strong>Repository</strong> entero. Puedes por ejemplo visualizar
+            los "parches" o cambios de las dos últimas "fotos" con
+            <code>git log -p -2</code> o ver estadísticas con
+            <code>git log --stat</code>, entre otras opciones y filtros muy
+            útiles.
+          </p>
+          <p>
+            Si ahora modificamos el archivo de texto agregándole algún contenido
+            y guardamos, el estado del archivo cambiaría a
+            <strong>Modified</strong>. Podemos comprobarlo nuevamente con el
+            comando:
+          </p>
+          <p class="code"><code>git status</code></p>
+          <img src="../assets/git/6.png" alt="" />
+          <p>
+            Nos menciona que usemos <code>git add</code> para copiar el archivo
+            al <strong>Staging Area</strong> y que también podemos usar
+            <code>git restore</code>.
+          </p>
+          <p>
+            Añadamos ahora esta modificación al
+            <strong>Staging Area</strong> con <code>git add</code>, que por
+            cierto no mueve el archivo de un lado a otro, sino que nos crea una
+            copia del mismo dentro del <strong>Staging Area</strong> mientras
+            que la otra copia se mantendrá en el
+            <strong>Working Directory</strong>. A continuación te mostraré
+            porqué es importante esta distinción.
+          </p>
+          <p class="code"><code>git add notas.txt</code></p>
+          <img src="../assets/git/7.png" alt="" />
+          <p>
+            Ahora si modificamos de nuevo el archivo de texto y escribimos
+            <code>git status</code> nos dirá que nuestro archivo está
+            <strong>Staged</strong> y la vez nos dice que está
+            <strong>MODIFIED</strong> y <strong>NO STAGED</strong>. Por eso es
+            importante la distinción. En el <strong>Staging Area</strong> se
+            encuentra la copia del archivo con la primera modificación y ahora
+            que modificamos el archivo de nuevo, este difiere de lo que hay en
+            el <strong>Working Directory</strong> con lo que hay en el
+            <strong>Staging Area</strong>. Entonces si modificas un archivo
+            luego de ejecutar <code>git add</code>, deberás ejecutar
+            <code>git add</code> de nuevo para preparar la última versión del
+            archivo.
+          </p>
+          <p>
+            También nos mencionan que podemos eliminar el archivo del
+            <strong>Staging Area</strong> usando el comando:
+          </p>
+          <p class="code"><code>git rm --cached notas.txt</code></p>
+          <p>
+            Para ver la diferencia entre lo que está en el
+            <strong> Staging Area </strong> y en el
+            <strong>Working Directory</strong> usamos el comando:
+          </p>
+          <p class="code"><code>git diff</code></p>
+          <p>
+            Diferencia la versión vieja con la versión nueva, nos muestra los
+            índices donde están guardados, cuantas líneas se quitaron y
+            agregaron (<code>@@ -1 +1,2 @@</code> significa que se quitó 1 línea
+            a partir de la línea 1 y se agregaron 2 líneas a partir de la línea
+            1, en una diferencia más realista verías un encabezado como:
+            <code>@@ -34,6 +34,8 @@</code> en este ejemplo se extrajeron 6
+            líneas a partir de la línea número 34 y se agregaron 8 líneas a
+            partir de la línea número 34) y finalmente cuales fueron las
+            palabras que eliminamos y agregamos.
+          </p>
+          <p>
+            Haré un <code>git add</code> y <code>git commit</code> a la última
+            versión del archivo. Ahora cambiaré completamente el contenido del
+            archivo de texto con un "Hola mundo" y lo mandaré al <strong>Staging Area</strong> de
+            nuevo. Para ver la diferencia entre la última foto (commit) y lo que
+            tenemos ahora mismo en el <strong>Staging Area</strong> podemos usar el comando:
+          </p>
+          <p class="code"><code>git diff --staged</code></p>
+          <p>
+            Como verás <code>git diff</code> nos ayuda a responder dos
+            preguntas:
+            <strong
+              >¿Qué cambié pero no preparé? y ¿Qué preparé y está listo para
+              confirmar?</strong
+            >
+          </p>
+        </section>
+      </div>
+
+      <nav class="section-nav">
+        <ol>
+          <li><a href="#comandosbasicos">Comandos Básicos</a></li>
+        </ol>
+      </nav>
+    </main>
+  </body>
+</html>

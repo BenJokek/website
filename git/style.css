@@ -1,0 +1,210 @@
+ /* The alert message box */
+ .alert {
+  padding: 20px;
+  background-color: #8b2996; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+} 
+
+/* Style the sidebar - fixed full height */
+.sidebar {
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 30px;
+  }
+  
+  /* Style sidebar links */
+  .sidebar a {
+    padding: 15px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 25px;
+    color: #8b2996;
+    display: block;
+  }
+  
+  /* Style links on mouse-over */
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+  
+  /* Style the main content */
+  .main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    padding: 0px 10px;
+  }
+  
+  /* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+  @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+  }
+
+.git {
+  color: #f1f1f1;
+  text-align: center;
+}
+
+kbd {
+	margin: 0px 0.1em;
+	padding: 0em 0.5em;
+	border-radius: 3px;
+	border: 1px solid rgb(204, 204, 204);
+	color: rgb(51, 51, 51);
+	line-height: 1.4;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 15px;
+	display: inline-block;
+	box-shadow: 0px 1px 0px rgba(0,0,0,0.2), inset 0px 0px 0px 2px #ffffff;
+	background-color: rgb(247, 247, 247);
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.diviframe {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
+
+
+
+/* ------------------------ */
+/* ------------------------ */
+/* ------------------------ */
+/* ------------------------ */
+/* ------------------------ */
+
+
+
+
+
+/* 1. Enable smooth scrolling */
+html {
+	scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
+  font-size: large;
+  font-family: 'Roboto','Ubuntu', sans-serif;
+  line-height: 1.5rem;
+}
+
+/* 2. Make nav sticky */
+main > nav {
+	position: sticky;
+	top: 4rem;
+  right: 0rem;
+	align-self: start;
+}
+
+/* 3. ScrollSpy active styles (see JS tab for activation) */
+.section-nav li.active > a {
+	color: #8b2996;
+	font-weight: 500;
+}
+
+/* Sidebar Navigation */
+.section-nav {
+	padding-left: 0;
+  margin-left: 7rem;
+	border-left: 1px solid #8b2996;
+}
+
+.section-nav a {
+	text-decoration: none;
+	display: block;
+	padding: .125rem 0;
+	color: #ccc;
+	transition: all 50ms ease-in-out; /* 💡 This small transition makes setting of the active state smooth */
+}
+
+.section-nav a:hover,
+.section-nav a:focus {
+	color: #666;
+}
+
+/** Poor man's reset **/
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	background: #fff;
+}
+
+ul, ol {
+	/* list-style: none; */
+	margin-left: 0.5rem;
+	padding-left: 0;
+}
+li {
+	margin-left: 1rem;
+  padding: 0.3rem;
+}
+
+/** page layout **/
+main {
+	display: grid;
+	grid-template-columns: 1fr 25em;
+	max-width: 100%;
+	/* width: 84%; */
+	margin: 0 auto;
+  padding-left: 25%;
+}
+
+img {
+  width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#first-img {
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+code {
+  background-color: #333;
+  color: #fff;
+  font-size:large;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+ .code {
+  background-color: #333;
+  color: #fff;
+  font-size:large;
+  border-radius: 20px;
+  padding: 10px;
+}

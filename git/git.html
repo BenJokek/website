@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Tutorial</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+
+  </head>
+
+  <body>
+    <!-- The sidebar -->
+    <div class="sidebar">
+      <a href="../index.html">Inicio</a>
+      <h1 class="git">Git</h1>
+      <a href="./git.html">Fundamentos</a>
+      <a href="./configuracion.html">Instalación y configuración</a>
+      <a href="./basics.html">Comandos Básicos</a>
+      <a href="./contrasenas.html">Repositorios Remotos y Contraseñas</a>
+      <a href="./practica.html">.gitignore</a>
+    </div>
+
+    <main>
+      
+      <div>
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Te recomiendo seguir esta guía en orden
+        </div> 
+        <h1>Fundamentos</h1>
+        <section id="importancia">
+          <h2>
+            ¿Qué es un control de versiones, y por qué debería importarte?
+          </h2>
+          <p>
+            Un control de versiones es un sistema que registra los cambios
+            realizados en un archivo o conjunto de archivos a lo largo del
+            tiempo, de modo que puedas recuperar versiones específicas más
+            adelante. Aunque en los ejemplos de este curso usarás archivos de
+            texto, en realidad puedes hacer lo mismo con casi cualquier tipo de
+            archivo que encuentres en una computadora.
+          </p>
+          <p>
+            Un sistema de control de versiones te permite regresar a versiones
+            anteriores de tus archivos, regresar a una versión anterior del
+            proyecto completo, comparar cambios a lo largo del tiempo, ver quién
+            modificó por última vez algo que pueda estar causando problemas, ver
+            quién introdujo un problema y cuándo, y mucho más. Usar un sistema
+            de control de versiones también significa generalmente que si
+            arruinas o pierdes archivos, será posible recuperarlos fácilmente.
+          </p>
+        </section>
+        <section id="metodos-de-control-de-versiones">
+          <h2>Métodos de control de versiones</h2>
+          <section id="local">
+            <h3>Sistemas de Control de Versiones Locales</h3>
+            <p>
+              Un método de control de versiones común es ir creando versiones de
+              un archivo manualmente, por ejemplo guardar una copia de la
+              versión 1 y luego seguir trabajando con la copia de la versión 2 y
+              así.
+            </p>
+            <img src="../assets/git/local.png" id="first-img" alt="" />
+            <p>
+              Este método es común porque es muy sencillo, pero también es
+              propenso a errores. Puedes llegar a borrar o sobrescribir archivos
+              que no querías. Otra forma de guardar cambios bastante fea podría
+              ser comentar bloques de código para deshabilitar ciertas funciones
+              sin eliminarlo por si llegas a necesitarlo después.
+            </p>
+            <p>
+              Para afrontar estos problema los programadores desarrollaron hace
+              tiempo sistemas locales que contenían una simple base de datos, en
+              la que se llevaba el registro de todos los cambios realizados a
+              los archivos. En este punto el control de versiones se llevaba a
+              cabo en el computador de cada uno de los desarrolladores y no
+              existía una manera eficiente de compartir el código entre ellos.
+            </p>
+            <img src="../assets/git/local2.png" alt="" />
+          </section>
+          <section id="centralizado">
+            <h3>Sistemas de Control de Versiones Centralizados</h3>
+            <p>
+              Para facilitar la colaboración de múltiples desarrolladores en un
+              solo proyecto los sistemas de control de versiones evolucionaron:
+              en vez de almacenar los cambios y versiones en el disco duro de
+              los desarrolladores, estos se almacenaban en un servidor
+              centralizado.
+            </p>
+            <p>
+              Esta configuración también tiene serias desventajas. La más obvia
+              es el punto único de fallo que representa el servidor
+              centralizado. Si ese servidor se cae durante una hora, entonces
+              durante esa hora nadie podrá colaborar o guardar cambios. Si el
+              disco duro en el que se encuentra la base de datos central se
+              corrompe, y no se han realizado copias de seguridad adecuadamente,
+              se perderá toda la historia del proyecto, con excepción de las
+              copias instantáneas que las personas tengan en sus máquinas
+              locales. Los Sistemas de Control de Versiones Locales también
+              sufren de este mismo problema: cuando tienes toda la historia del
+              proyecto en un mismo lugar, te arriesgas a perderlo todo.
+            </p>
+            <img src="../assets/git/centralizado.png" alt="" />
+          </section>
+          <section id="distribuido">
+            <h3>Sistemas de Control de Versiones Distribuidos</h3>
+            <p>
+              En un Sistema de Control de Versiones Distribuido, como por
+              ejemplo Git, los clientes tienen una copia completa del proyecto
+              con todas sus versiones incluidas. De esta manera, si un servidor
+              deja de funcionar cualquiera de los repositorios disponibles en
+              los clientes puede ser copiado al servidor con el fin de
+              restaurarlo.
+            </p>
+            <img src="../assets/git/distribuido.png" alt="" />
+          </section>
+        </section>
+        <section id="secciones-principales">
+          <h2>Las Tres Secciones Principales</h2>
+          <p>
+            Las tres secciones principales de un proyecto de Git son el
+            Directorio de Trabajo (Working Directory), el Área de Preparación
+            (Staging Area) y Directorio de Git o Repositorio (Git Directory or
+            Repository).
+          </p>
+          <img src="../assets/git/mainsections.jpg" alt="" />
+          <ul>
+            <li>
+              <h3>Working Directory o directorio de trabajo</h3>
+              <p>
+                Es el directorio o carpeta donde se encuentra la copia de una
+                versión del proyecto sacada de la base de datos del Git
+                Directory. Es como tu área de trabajo donde puedes agregar,
+                editar y eliminar los archivos.
+              </p>
+            </li>
+            <li>
+              <h3>Git Directory/Repository o directorio Git/repositorio</h3>
+              <p>
+                Es la carpeta oculta (.git) que se crea con el comando git init.
+                En el mismo generalmente se encuentran dos lugares importantes
+                que son el Staging Area y el historial de commits, o sea, la
+                "base de datos" de tu proyecto donde se irán guardando las
+                versiones del mismo. El nombre del directorio comienza con "."
+                para indicar que es un archivo oculto. El sistema operativo por
+                defecto no muestra los archivos ocultos al usuario.
+              </p>
+            </li>
+            <li>
+              <h3>
+                Staging Area o área de preparación (a veces referido como
+                "index")
+              </h3>
+              <p>
+                Es un archivo que almacena información acerca de lo que va a ir
+                en tu próxima confirmación (commit). Es una especie de borrador
+                y cada vez que termines de trabajar en un archivo del Working
+                Directory, querrás COPIARLO en el Staging Area (usando el
+                comando <code>git add</code>). Parece innecesario pero te puede
+                llegar a dar cierta flexibilidad y orden en los cambios porque
+                nos permite elegir que y cuando "commitear". Por ejemplo en vez
+                de hacer:
+              </p>
+              <p class="code"><code>git commit -m "Add HTML and CSS"</code></p>
+              <p>Podemos hacer:</p>
+              <p class="code"><code>git commit -m "Add HTML"</code></p>
+              <p class="code"><code>git add style.css</code></p>
+              <p class="code"><code>git commit -m "Add CSS"</code></p>
+              <p>
+                Luego en el historial aparecería por separado lo que puede dar
+                más orden. No solo podemos agregar archivos al Staging Area,
+                también los podemos quitar.
+              </p>
+            </li>
+          </ul>
+        </section>
+        <section id="workflow">
+          <h2>El flujo de Trabajo Básico:</h2>
+          <ol>
+            <li>
+              Agregas, modificas, eliminas archivos en tu Working Directory
+            </li>
+            <li>Mandas una copia de los mismos al Staging Area</li>
+            <li>
+              Haces un commit para que queden guardados como una versión de tu
+              proyecto en el Git Directory o Repositorio
+            </li>
+          </ol>
+          <img src="../assets/git/basicworkflow.jpg" alt="" />
+        </section>
+        <section id="estados">
+          <h2>Los Estados de Git</h2>
+          <ol>
+            <li>
+              <strong>Untracked</strong> (sin seguimiento): los archivos sin
+              seguimiento se han creado dentro del Working Directory pero aún no
+              se han agregado al Staging Area mediante el comando
+              <code>git add</code>. Son cualquier archivo en tu Working
+              Directory que no estuvo en tu último commit ni está en el Staging
+              Area.
+            </li>
+            <li>
+              <strong>Unmodified</strong> (sin modificar): se hizo un commit al
+              archivo y no se volvió a modificar.
+            </li>
+            <li>
+              <strong>Modified</strong> (modificado): el archivo tuvo cambios
+              pero NO fue COPIADO al Staging Area.
+            </li>
+            <li>
+              <strong>Staged</strong> (preparado): el archivo fue COPIADO al
+              Staging Area.
+            </li>
+            <li>
+              <strong>Committed</strong> (confirmado): una versión concreta de
+              un archivo está guardada en el Git Directory.
+            </li>
+          </ol>
+          <img src="../assets/git/states.jpg" alt="" />
+        </section>
+        <section id="datos">
+          <h2>¿Cómo Git guarda los datos?</h2>
+          <p>
+            Git toma "instatáneas", "snapshots" o "fotos" de tu proyecto al
+            momento de mandarlo al Git Directory/Reposiroty con el comando
+            <code>git commit</code>. No solo considera el archivo al que le
+            hiciste el cambio sino que considera a todos ellos en ese momento.
+            Si una versión de tu proyecto se conforma de muchos archivos es más
+            sencillo usar Git para guardar esa versión, tomándole una "foto" en
+            ese momento, que si lo estuvieramos haciendo manualmente. Esta
+            manera de trabajar en mucho más fácil, segura y eficiente. Tomaría
+            mucho trabajo estar copiando y pegando cientos de archivos
+            manualmente en vez de solo usar Git para sacarle una "foto" de como
+            se encuentra en ese momento y listo. Luego más adelante podríamos
+            volver a ese punto exacto si lo necesitáramos. Para ser eficiente,
+            si los archivos no se han modificado Git no almacena el archivo de
+            nuevo, sino que lo enlaza con la última copia que ya tiene
+            almacenada.
+          </p>
+        </section>
+      </div>
+
+      <!-- NAV SPY -->
+
+      <nav class="section-nav">
+        <ol>
+          <li><a href="#importancia">Introducción</a></li>
+          <li>
+            <a href="#metodos-de-control-de-versiones"
+              >Métodos de control de versiones</a
+            >
+            <ul>
+              <li>
+                <a href="#local">Sistemas de Control de Versiones Locales</a>
+              </li>
+              <li>
+                <a href="#centralizado"
+                  >Sistemas de Control de Versiones Centralizados</a
+                >
+              </li>
+              <li>
+                <a href="#distribuido"
+                  >Sistemas de Control de Versiones Distribuidos</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#secciones-principales">Las Tres Secciones Principales</a>
+          </li>
+          <li>
+            <a href="#workflow">El flujo de Trabajo Básico</a>
+          </li>
+          <li>
+            <a href="#estados">Los Estados de Git</a>
+          </li>
+          <li>
+            <a href="#datos">¿Cómo Git guarda los datos?</a>
+          </li>
+        </ol>
+      </nav>
+    </main>
+  </body>
+</html>

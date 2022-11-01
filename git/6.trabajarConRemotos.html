@@ -89,11 +89,16 @@
           El comando irá al proyecto remoto y se traerá todos los datos que aún
           no tienes de dicho remoto. Es importante destacar que el comando git
           fetch solo trae datos a tu repositorio local, no combina ni modifica
-          automáticamente el trabajo que llevas hecho. Puedes ver cambios con:
+          automáticamente el trabajo que llevas hecho.
         </p>
+        <p>Ver commits del remoto:</p>
         <p class="code"><code>git log origin/main main</code></p>
-        <p>Y combinar los cambios con:</p>
+        <p>Traer el contenido del remoto a tu <strong>Working Directory</strong>:</p>
+        <p class="code"><code>git checkout origin/main</code></p>
+        <p>(Volver a tu contenido en local con <code>git checkout main</code>)</p>
+        <p>Combinar los cambios:</p>
         <p class="code"><code>git merge</code></p>
+        <p>Se verá un ejemplo práctico al final</p>
         <h2>
           Para traer datos y combinar automáticamente
           (<code>fetch</code>+<code>merge</code>):
@@ -118,7 +123,69 @@
           <code>git push</code>.
         </p>
         <h2>¿Cómo resolver un conflicto?</h2>
-
+        <p>
+          Ahora mismo no tengo un archivo "README.md" en mi proyecto, ni en el
+          entorno remoto ni en el entorno local. Voy a crear uno en cada sitio
+          pero con contenido diferente para provocar un conflicto cuando los
+          quiera unificar. En el repositorio remoto le pondré "My website" y en
+          el local "Hola mundo". Ahora cuando quiera hacer directamente push me
+          saltará un error.
+        </p>
+        <img src="../assets/git/gitpusherror.png" alt="error al querer hacer git push">
+        <p>
+          Como verán me recomienda hacer un <code>git fetch</code> primero.
+          Hagamos eso.
+        </p>
+        <p>
+          Ahora podemos investigar que diferencia hay entre lo que genera
+          conflicto. Podemos consultar los commits que se han hecho en el remoto
+          con
+          <code>git log origin/main</code>. Podemos contrastarlo con
+          <code>git log main</code> que es el que tenemos actualmente en nuestro
+          local.
+        </p>
+        <p>
+          También podemos movernos hacia la última "foto" del remoto con
+          <code>git checkout origin/main</code>, eso nos cambia los archivos de
+          nuestro <strong>Working Directory</strong> a como se encuentran en el
+          remoto. Podemos volver a nuestro proyecto local de vuelta con
+          <code>git checkout main</code>.
+        </p>
+        <p>
+          Con el primer comando pude notar que se había hecho un commit en el
+          remoto donde se creó un "README.md". Con el segundo comando
+          ("checkout") pude ir personalmente y corroborar que efectivamente ya
+          había un README.md en el remoto y su contenido era "My website".
+        </p>
+        <p>
+          Resolvamos este conflicto de una vez por todas: <code>git merge</code>
+        </p>
+        <img src="../assets/git/merge.png" alt="merge error" />
+        <p>
+          Ahora nos salta un error diciendo que debemos resolver el conflicto y
+          luego hacer commit. En este momento mi editor de código Visual Studio
+          Code detecta la situación.
+        </p>
+        <a href="../assets/git/mergeedit.png" target="_blank"
+          ><img
+            src="../assets/git/mergeedit.png"
+            alt="merge con visual studio code"
+        /></a>
+        <a href="../assets/git/mergeeditor.png" target="_blank"
+          ><img src="../assets/git/mergeeditor.png" alt="merge editor"
+        /></a>
+        <p>
+          Como verás (click para agrandar) puedes resolver el conflicto desde el
+          mismo editor. Es muy intuitivo, modificas como quieres que quede el
+          contenido final y listo. Luego que resuelvas el conflicto arriba a la
+          izquierda puedes configurar lo que irá en el mensaje del commit y
+          commiteas. Ahora en tu historial de commits (<code>git log</code>)
+          quedaría el commit donde se agregó el README.md en el remoto, el del
+          local, y finalmente el merge. Ahora no debería haber conflictos y
+          podrías hacer <code>git push</code> en paz.
+        </p>
+        <a href="../assets/git/succeesmerge.png" target="_blank"><img src="../assets/git/succeesmerge.png" alt="merge exitoso"></a>
+        
       </div>
 
       <nav class="section-nav">

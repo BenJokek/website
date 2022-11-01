@@ -4,50 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Git Tutorial</title>
+    <title>Git Tutorial - Comandos Básicos</title>
     <link rel="stylesheet" href="style.css" />
     <script src="./script.js"></script>
   </head>
 
   <body>
-    <!-- The sidebar -->
-    <div class="sidebar">
-      <a href="../index.html">Inicio</a>
-      <h1 class="git">Git</h1>
-      <a href="./git.html">Fundamentos</a>
-      <a href="./configuracion.html">Instalación y configuración</a>
-      <a href="./basics.html">Comandos Básicos</a>
-      <a href="./contrasenas.html">Repositorios Remotos y Contraseñas</a>
-      <a href="./gitignore.html">.gitignore</a>
-    </div>
-
+    <header>
+      <script id="replace_with_navbar" src="script.js"></script>
+      <h1 class="title">Comandos Básicos (entorno local)</h1>
+    </header>
     <main>
       <div>
         <section id="comandosbasicos">
-          <h1>Comandos Básicos de Git(entorno local)</h1>
           <ul>
             <li>
-              <code>git status</code>: muestra el estado del Working Directory y
-              el Staging Area. Permite ver qué cambios se han realizado, cuáles
-              no y qué archivos no están siendo rastreados por Git.
+              <code>git status</code>: muestra el estado del
+              <strong>Working Directory</strong> y el
+              <strong>Staging Area</strong>. Permite ver qué cambios se han
+              realizado, cuáles no y qué archivos no están siendo rastreados por
+              Git.
             </li>
             <li>
-              <code>git add </code>: agrega un cambio del Working Directory al
-              Staging Area. Le dice a Git que desea incluir algún archivo en el
-              próximo commit. Los cambios no se registran hasta que ejecutas git
-              commit.
+              <code>git add </code>: agrega un cambio del
+              <strong>Working Directory</strong> al
+              <strong>Staging Area</strong>. Le dice a Git que desea incluir
+              algún archivo en el próximo commit. Los cambios no se registran
+              hasta que ejecutas <code>git commit</code>.
             </li>
             <li>
               <code>git restore</code>: eliminar los cambios que hayamos hecho
-              en el Working Directory y volver al estado en el que estaba en la
-              última confirmación (o cuando estaba recién clonado, o como sea
-              que haya llegado a tu directorio de trabajo).
+              en el <strong>Working Directory</strong> y volver al estado en el
+              que estaba en la última confirmación (o cuando estaba recién
+              clonado, o como sea que haya llegado a tu directorio de trabajo).
             </li>
-            <li>
-              <code>git diff</code>: en esta ocasión se usará para ver la
-              diferencia entre lo que está en el Staging Area y en el Working
-              Directory.
-            </li>
+
             <li>
               <code>git commit -m "mensaje descriptivo"</code>: captura una
               "instantánea" de los cambios realizados actualmente en el
@@ -57,8 +48,19 @@
             </li>
             <li><code>git log</code>: ver el histórico de commits.</li>
             <li>
-              <code>git diff --staged</code>: ver diferencia entre el último
-              commit y lo que tengo ahora en el Staging Area.
+              <code>git rm --cached</code>: eliminar archivos del
+              <strong>Staging Area</strong>.
+            </li>
+            <li>
+              <code>git diff</code>: ver la diferencia entre lo que hay en el
+              <strong>Working Directory</strong> y el
+              <strong>Staging Area</strong> o en el
+              <strong>Git Directory</strong> en caso que no haya nada en el
+              <strong>Staging Area</strong>.
+            </li>
+            <li>
+              <code>git diff --staged</code>: ver diferencia entre
+              <strong>Staging Area</strong> y <strong>Git Directory</strong>.
             </li>
           </ul>
           <h2>Comandos Básicos de la Consola (recomendado aprender):</h2>
@@ -256,9 +258,10 @@
           <p>
             Haré un <code>git add</code> y <code>git commit</code> a la última
             versión del archivo. Ahora cambiaré completamente el contenido del
-            archivo de texto con un "Hola mundo" y lo mandaré al <strong>Staging Area</strong> de
-            nuevo. Para ver la diferencia entre la última foto (commit) y lo que
-            tenemos ahora mismo en el <strong>Staging Area</strong> podemos usar el comando:
+            archivo de texto con un "Hola mundo" y lo mandaré al
+            <strong>Staging Area</strong> de nuevo. Para ver la diferencia entre
+            la última foto (commit) y lo que tenemos ahora mismo en el
+            <strong>Staging Area</strong> podemos usar el comando:
           </p>
           <p class="code"><code>git diff --staged</code></p>
           <p>

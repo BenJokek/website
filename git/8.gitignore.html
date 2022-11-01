@@ -10,21 +10,14 @@
   </head>
 
   <body>
-    <!-- The sidebar -->
-    <div class="sidebar">
-      <a href="../index.html">Inicio</a>
-      <h1 class="git">Git</h1>
-      <a href="./git.html">Fundamentos</a>
-      <a href="./configuracion.html">Instalación y configuración</a>
-      <a href="./basics.html">Comandos Básicos</a>
-      <a href="./contrasenas.html">Repositorios Remotos y Contraseñas</a>
-      <a href="./gitignore.html">.gitignore</a>
-    </div>
+    <header>
+      <script id="replace_with_navbar" src="script.js"></script>
+      <h1 class="title">¿Cómo hacer para que Git ignore ciertos archivos?</h1>
+    </header>
 
     <main>
       <div>
         <section id="gitignore">
-          <h1>¿Cómo hacer para que Git ignore ciertos archivos?</h1>
           <p>
             A veces tendrás algún tipo de archivo que no quieres que Git añada
             automáticamente o siquiera aparezca como Untracked. Puede darse en
@@ -41,15 +34,22 @@
             que terminen con ".o" o ".a". Tienes una lista de patrones
             pre-armados en este
             <a href="https://github.com/github/gitignore">link</a> y si quieres
-            profundizar más te recomiendo aprender sobre expresiones regulares.
+            profundizar más te recomiendo aprender sobre <strong>globbing patterns</strong>.
           </p>
-          <img src="../assets/git/gitignore.png" alt="ejemplo de uso .gitignore" />
+          <img
+            src="../assets/git/gitignore.png"
+            alt="ejemplo de uso .gitignore"
+          />
         </section>
       </div>
 
       <nav class="section-nav">
         <ol>
-          <li><a href="#gitignore">¿Cómo hacer para que Git ignore ciertos archivos?</a></li>
+          <li>
+            <a href="#gitignore"
+              >¿Cómo hacer para que Git ignore ciertos archivos?</a
+            >
+          </li>
         </ol>
       </nav>
     </main>

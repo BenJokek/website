@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Tutorial - Trabajar con Remotos</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <script id="replace_with_navbar" src="script.js"></script>
+      <h1 class="title">Trabajar con Remotos</h1>
+    </header>
+    <main>
+      <div>
+        <section id="clone">
+          <h2><strong>Clonar un repositorio remoto:</strong></h2>
+          <p class="code"><code>git clone [URL]</code></p>
+          <p>
+            Esto crea un directorio nuevo, inicializa un
+            <strong>Git Directory</strong> en su interior, descarga toda la
+            información de ese <strong>Git Directory</strong> y saca una copia
+            de trabajo de la última versión. Cuando clonas por primera vez un
+            repositorio, todos tus archivos estarán <strong>Tracked</strong> y
+            <strong>Unmodified</strong> pues acabas de sacarlos y aun no han
+            sido editados.
+          </p>
+          <p>
+            Para poder colaborar en cualquier proyecto Git, necesitas saber cómo
+            gestionar repositorios remotos. Estos son repositorios que están
+            hospedados en Internet u otra red.
+          </p>
+        </section>
+        <hr />
+        <section id="remotev">
+          <h2><strong>Ver los remotos configurados:</strong></h2>
+          <p class="code"><code>git remote -v</code></p>
+          <p>
+            Deberías ver al menos <strong>origin</strong> que es el nombre por
+            defecto del servidor de donde clonaste (suponiendo que no le hayas
+            cambiado el nombre) y luego la URL. Te muestra uno para hacer fetch
+            y otro para el push (en realidad son el mismo aunque podrías tener
+            diferentes para cada cosa).
+          </p>
+        </section>
+
+        <hr />
+        <section id="remoteadd">
+          <h2>
+            <strong
+              >Añadir un remoto nuevo y asociarlo a un nombre de
+              referencia:</strong
+            >
+          </h2>
+          <p class="code"><code>git remote add [nombre] [URL]</code></p>
+          <p>
+            Si habías creado anteriormente un repo local (en tu ordenador)
+            puedes conectarlo a uno remoto con ese comando.
+          </p>
+        </section>
+        <hr />
+        <h2>
+          <strong>Ver información acerca de un remoto en particular:</strong>
+        </h2>
+        <p class="code"><code>git remote show [nombre-remoto]</code></p>
+        <hr />
+        <h2><strong>Cambiar el nombre de la referencia de un remoto:</strong></h2>
+        <p class="code">
+          <code>git remote rename [nombre-viejo] [nombre-nuevo]</code>
+        </p>
+        <p>
+          Al hacer esto también cambia el nombre de las ramas remotas. Por lo
+          tanto, lo que estaba referenciado como
+          <strong>origin/main</strong> ahora lo está como
+          <strong>[nuevo-nombre]/main</strong>.
+        </p>
+        <hr />
+        <h2><strong>Eliminar la conexión con un remoto:</strong></h2>
+        <p class="code"><code>git remote rm [nombre-remoto]</code></p>
+        <hr />
+        <h2><strong>Obtener datos de tus proyectos remotos:</strong></h2>
+        <p class="code"><code>git fetch origin</code></p>
+        <div class="alert">
+          <span
+            class="closebtn"
+            onclick="this.parentElement.style.display='none';"
+            >&times;</span
+          >
+          Cuando hablemos de "origin" nos referimos al nombre del remoto por
+          defecto.
+        </div>
+        <p>
+          El comando irá al proyecto remoto y se traerá todos los datos que aún
+          no tienes de dicho remoto. Es importante destacar que el comando git
+          fetch solo trae datos a tu repositorio local, no combina ni modifica
+          automáticamente el trabajo que llevas hecho. Puedes ver cambios con:
+        </p>
+        <p class="code"><code>git log origin/main main</code></p>
+        <p>Y combinar los cambios con:</p>
+        <p class="code"><code>git merge</code></p>
+        <h2>
+          <strong>Para traer datos y combinar automáticamente</strong>
+          (<code>fetch</code>+<code>merge</code>):
+        </h2>
+        <p class="code"><code>git pull</code></p>
+        <p>Si no hay conflictos en el código debería de funcionar.</p>
+        <hr />
+        <h2><strong>Enviar tu proyecto al repositorio remoto:</strong></h2>
+        <p class="code">
+          <code
+            >git push origin [nombre-rama-local] (por defecto es la rama main o
+            master)</code
+          >
+        </p>
+        <p>
+          Este comando solo funciona si clonaste de un servidor sobre el que
+          tienes permisos de escritura y si nadie más ha enviado datos por el
+          medio. Si alguien más clona el mismo repositorio que tú y envía
+          información antes que tú, tu envío será rechazado. Tendrás que traerte
+          su trabajo y combinarlo con el tuyo antes de que puedas enviar datos
+          al servidor. Siempre haz <code>git pull</code> antes del
+          <code>git push</code>.
+        </p>
+      </div>
+
+      <nav class="section-nav">
+        <ol>
+          <li><a href="#clone">Clonar un repositorio remoto</a></li>
+          <li><a href="#remotev">Ver los remotos configurados</a></li>
+          <li>
+            <a href="#remoteadd"
+              >Añadir un remoto nuevo y asociarlo a un nombre de referencia</a
+            >
+          </li>
+          <li><a href="#remotev">Ver los remotos configurados</a></li>
+          <li><a href="#remotev">Ver los remotos configurados</a></li>
+          <li><a href="#remotev">Ver los remotos configurados</a></li>
+        </ol>
+      </nav>
+    </main>
+  </body>
+</html>

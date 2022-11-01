@@ -4,35 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Git Tutorial</title>
+    <title>Git Tutorial - Fundamentos</title>
     <link rel="stylesheet" href="style.css" />
     <script src="./script.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
-
   </head>
 
   <body>
-    <!-- The sidebar -->
-    <div class="sidebar">
-      <a href="../index.html">Inicio</a>
-      <h1 class="git">Git</h1>
-      <a href="./git.html">Fundamentos</a>
-      <a href="./configuracion.html">Instalación y configuración</a>
-      <a href="./basics.html">Comandos Básicos</a>
-      <a href="./contrasenas.html">Repositorios Remotos y Contraseñas</a>
-      <a href="./practica.html">.gitignore</a>
-    </div>
-
+    <header>
+      <script id="replace_with_navbar" src="script.js"></script>
+      <h1 class="title">Fundamentos</h1>
+    </header>
     <main>
-      
       <div>
         <div class="alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
           Te recomiendo seguir esta guía en orden
         </div> 
-        <h1>Fundamentos</h1>
         <section id="importancia">
           <h2>
             ¿Qué es un control de versiones, y por qué debería importarte?
@@ -227,7 +214,7 @@
           <h2>¿Cómo Git guarda los datos?</h2>
           <p>
             Git toma "instatáneas", "snapshots" o "fotos" de tu proyecto al
-            momento de mandarlo al Git Directory/Reposiroty con el comando
+            momento de mandarlo al Git Directory/Repository con el comando
             <code>git commit</code>. No solo considera el archivo al que le
             hiciste el cambio sino que considera a todos ellos en ese momento.
             Si una versión de tu proyecto se conforma de muchos archivos es más

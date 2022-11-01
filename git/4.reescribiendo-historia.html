@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Tutorial</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <script id="replace_with_navbar" src="script.js"></script>
+      <h1 class="title">Reescribiendo la Historia</h1>
+    </header>
+    <main>
+      <div>
+        <section id="amend">
+          <p>
+            El trabajo principal de Git es asegurarse de que nunca pierda un
+            cambio confirmado. Pero también está diseñado para darle un control
+            total sobre su flujo de trabajo. Esto incluye permitirle definir
+            exactamente cómo se ve el historial de su proyecto; sin embargo,
+            también crea la posibilidad de perder confirmaciones.
+          </p>
+          <h2>Cambiar el último commit (<code>git commit --amend</code>)</h2>
+          <p>
+            El comando <code>git commit --amend</code> permite modificar la
+            confirmación más reciente reemplazándola por completo. Te ahorras
+            crear una confirmación completamente nueva. También se puede usar
+            para simplemente editar el mensaje de confirmación anterior sin
+            cambiar su instantánea.
+          </p>
+          <p>
+            Por ejemplo, supongamos que hiciste un <code>git commit</code> pero
+            te das cuenta inmediatamente de que escribiste el mensaje del commit
+            con una falta ortográfica. Puedes modificar el mensaje sin alterar
+            el resto del commit con:
+          </p>
+          <p class="code">
+            <code>git commit --amend -m "mensaje corregido"</code>
+          </p>
+          <p>
+            Ahora supongamos que te olvidaste de incluir un archivo en el
+            <strong>Staging Area</strong> antes de hacer el
+            <code>git commit</code>. Puedes incluirlo esta vez con
+            <code>git add</code> al <strong>Staging Area</strong> y luego
+            simplemente:
+          </p>
+          <p class="code"><code>git commit --amend --no-edit</code></p>
+          <p>
+            Ahora tu archivo quedaría incluido en tu último commit como si nunca
+            te hubieras olvidado. <code>--no-edit</code> es para dejar el
+            mensaje del commit sin modificar.
+          </p>
+          <p>
+            Cuidado al usar <code>--amend</code> en confirmaciones compartidas con otros
+            miembros del equipo. La modificación de una confirmación que se
+            comparte con otro usuario puede requerir resoluciones de conflictos
+            de combinación confusas y largas.
+          </p>
+          <h3>Pruébalo tu mismo:</h3>
+          <p class="code"><code>mkdir prueba</code></p>
+          <p class="code"><code>cd prueba</code></p>
+          <p class="code"><code>touch archivo1.txt</code></p>
+          <p class="code"><code>touch archivo2.txt</code></p>
+          <p class="code"><code>git add archivo1.txt</code></p>
+          <p class="code"><code>git commit -m "initial komit"</code></p>
+          <p class="code"><code>git log</code></p>
+          <p>Escribimos mal el mensaje!!!</p>
+          <p class="code"><code>git commit --amend -m "initial commit"</code></p>
+          <p class="code"><code>git log</code></p>
+          <p>Ahora está bien</p>
+          <p class="code"><code>git status</code></p>
+          <p>Nos olvidamos del archivo2!!!</p>
+          <p class="code"><code>git add archivo2.txt</code></p>
+          <p class="code"><code>git commit --amend --no-edit</code></p>
+          <p>Agrega el archivo al primer commit</p>
+        </section>
+      </div>
+
+      <nav class="section-nav">
+        <ol>
+          <li><a href="#amend">Cambiar el último commit</a></li>
+          <!-- <li><a href="#video">Video</a></li> -->
+        </ol>
+      </nav>
+    </main>
+  </body>
+</html>

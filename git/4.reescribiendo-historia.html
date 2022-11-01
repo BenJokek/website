@@ -55,21 +55,24 @@
             mensaje del commit sin modificar.
           </p>
           <p>
-            Cuidado al usar <code>--amend</code> en confirmaciones compartidas con otros
-            miembros del equipo. La modificación de una confirmación que se
-            comparte con otro usuario puede requerir resoluciones de conflictos
-            de combinación confusas y largas.
+            Cuidado al usar <code>--amend</code> en confirmaciones que ya fueron
+            subidas al repositorio remoto. Generarías una divergencia entre lo
+            remoto y local. Suponiendo que trabajas solo puedes arreglarlo
+            sobreescribiendo lo que tengas en el repo remoto con el flag
+            <code>--force</code>: 
+            <code>git push --force origin main</code>. Mucho cuidado con este comando.
           </p>
           <h3>Pruébalo tu mismo:</h3>
           <p class="code"><code>mkdir prueba</code></p>
           <p class="code"><code>cd prueba</code></p>
-          <p class="code"><code>touch archivo1.txt</code></p>
-          <p class="code"><code>touch archivo2.txt</code></p>
+          <p class="code"><code>touch archivo1.txt archivo2.txt</code></p>
           <p class="code"><code>git add archivo1.txt</code></p>
           <p class="code"><code>git commit -m "initial komit"</code></p>
           <p class="code"><code>git log</code></p>
           <p>Escribimos mal el mensaje!!!</p>
-          <p class="code"><code>git commit --amend -m "initial commit"</code></p>
+          <p class="code">
+            <code>git commit --amend -m "initial commit"</code>
+          </p>
           <p class="code"><code>git log</code></p>
           <p>Ahora está bien</p>
           <p class="code"><code>git status</code></p>

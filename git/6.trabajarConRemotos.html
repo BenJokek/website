@@ -76,6 +76,11 @@
         <hr />
         <h2>Obtener datos de tus proyectos remotos:</h2>
         <p class="code"><code>git fetch origin</code></p>
+        <p>
+          El comando anterior incluye a todas la ramas del remoto, para
+          seleccionar ramas específicas:
+          <code>git fetch origin [nombre-rama]</code>
+        </p>
         <div class="alert">
           <span
             class="closebtn"
@@ -93,11 +98,15 @@
         </p>
         <p>Ver commits del remoto:</p>
         <p class="code"><code>git log origin/main main</code></p>
-        <p>Traer el contenido del remoto a tu <strong>Working Directory</strong>:</p>
+        <p>
+          Traer el contenido del remoto a tu <strong>Working Directory</strong>:
+        </p>
         <p class="code"><code>git checkout origin/main</code></p>
-        <p>(Volver a tu contenido en local con <code>git checkout main</code>)</p>
+        <p>
+          (Volver a tu contenido en local con <code>git checkout main</code>)
+        </p>
         <p>Combinar los cambios:</p>
-        <p class="code"><code>git merge</code></p>
+        <p class="code"><code>git merge origin/main</code></p>
         <p>Se verá un ejemplo práctico al final</p>
         <h2>
           Para traer datos y combinar automáticamente
@@ -109,8 +118,7 @@
         <h2>Enviar tu proyecto al repositorio remoto:</h2>
         <p class="code">
           <code
-            >git push origin [nombre-rama-local] (por defecto es la rama main o
-            master)</code
+            >git push origin [nombre-rama-local]</code
           >
         </p>
         <p>
@@ -131,7 +139,10 @@
           el local "Hola mundo". Ahora cuando quiera hacer directamente push me
           saltará un error.
         </p>
-        <img src="../assets/git/gitpusherror.png" alt="error al querer hacer git push">
+        <img
+          src="../assets/git/gitpusherror.png"
+          alt="error al querer hacer git push"
+        />
         <p>
           Como verán me recomienda hacer un <code>git fetch</code> primero.
           Hagamos eso.
@@ -184,8 +195,9 @@
           local, y finalmente el merge. Ahora no debería haber conflictos y
           podrías hacer <code>git push</code> en paz.
         </p>
-        <a href="../assets/git/succeesmerge.png" target="_blank"><img src="../assets/git/succeesmerge.png" alt="merge exitoso"></a>
-        
+        <a href="../assets/git/succeesmerge.png" target="_blank"
+          ><img src="../assets/git/succeesmerge.png" alt="merge exitoso"
+        /></a>
       </div>
 
       <nav class="section-nav">

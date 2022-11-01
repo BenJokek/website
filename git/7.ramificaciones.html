@@ -16,6 +16,287 @@
     </header>
     <main>
       <div>
+        <p>
+          Las ramas de Git son un puntero a una instantánea. Cuando desea
+          agregar una nueva función o corregir un error, sin importar cuán
+          grande o pequeño sea, genera una nueva rama para encapsular sus
+          cambios. Esto ayuda a evitar que código inestable se fusione con
+          código de la rama principal. Una vez que ese código de la rama
+          secundaria esté listo, puedes fusionarlo al principal y finalmente
+          eliminar la rama secundaria.
+        </p>
+        <img src="../assets/git/diagrama1.png" alt="" />
+        <p>
+          El diagrama anterior visualiza un repositorio con dos líneas de
+          desarrollo aisladas, una para una característica pequeña y otra para
+          una característica de mayor duración. Al desarrollarlos en ramas, no
+          solo es posible trabajar en ambos en paralelo, sino que también
+          mantiene la rama principal libre de código cuestionable.
+        </p>
+        <h2>¿Cómo funciona?</h2>
+        <p>
+          Una rama representa una línea independiente de desarrollo. Las ramas
+          sirven como una abstracción para el proceso de
+          <strong>edit</strong>/<strong>stage</strong>/<strong>commit</strong>.
+          Puede pensar en ellos como una forma de solicitar un
+          <strong>Working Directory</strong>, un <strong>Staging Area</strong> y
+          un <strong>Git Directory</strong> completamente nuevos. Las nuevas
+          confirmaciones se registran en el historial de la rama actual, lo que
+          da como resultado una bifurcación en el historial del proyecto.
+        </p>
+        <p>
+          El comando <code>git branch</code> le permite crear, enumerar,
+          renombrar y eliminar ramas.
+          <u
+            >No le permite cambiar entre ramas o volver a armar un historial
+            bifurcado</u
+          >. Por esta razón, <code>git branch</code> está estrechamente
+          integrado con los comandos <code>git checkout</code> y
+          <code>git merge</code>.
+        </p>
+        <h2>Aprender a trabajar con ramas de manera práctica</h2>
+        <p>
+          En la primera confirmación de cambios que realizamos, siempre se
+          creará una rama principal (main) apuntando a dicha confirmación. En
+          cada confirmación de cambios que realicemos, la rama irá avanzando
+          automáticamente, y esa nueva confirmación apuntará a la anterior. Git
+          sabe en que rama se encuentra mediante un apuntador denominado HEAD.
+        </p>
+        <img src="../assets/git/ramamain.png" alt="Rama main representación" />
+        <h2>Crear nueva rama</h2>
+        <p>
+          Cuando se crea una nueva rama simplemente se crea un nuevo apuntador
+          para que lo puedas mover libremente. Supongamos que queremos crear una
+          nueva rama denominada "testing" con:
+        </p>
+        <p class="code"><code>git branch testing</code></p>
+        <p>
+          Esto creará un nuevo apuntador a la misma confirmación donde estés
+          actualmente.
+        </p>
+        <img src="../assets/git/ramatesting.png" alt="Se crea rama testing" />
+        <p>
+          El comando solo crea una rama, no salta hacia ella, por ende el
+          puntero HEAD se mantendrá sobre la rama main.
+        </p>
+        <p>Puedes verlo en la consola con:</p>
+        <p class="code"><code>git log --oneline --decorate</code></p>
+        <p>
+          Podrás ver que las ramas "main" y "testing" están junto a la
+          confirmación XXXXXXX y HEAD apunta a main.
+        </p>
+        <p>
+          Puedes listar las ramas disponibles y donde se encuentra el HEAD
+          (representado por un "*") con:
+        </p>
+        <p class="code"><code>git branch</code></p>
+        <h2>Cambiar de rama</h2>
+        <p>Salta de una rama a otra:</p>
+        <p class="code"><code>git checkout testing</code></p>
+        <p>Esto mueve el apuntador HEAD a la rama testing</p>
+        <img
+          src="../assets/git/apuntadorentesting.png"
+          alt="Apuntador HEAD apunta a la rama testing"
+        />
+        <p>Ahora si realizamos una nueva confirmación:</p>
+        <img
+          src="../assets/git/testingavanza.png"
+          alt="La rama apuntada por HEAD avanza con cada confirmación de cambios"
+        />
+        <p>
+          Observemos algo interesante: la rama testing avanza, mientras que la
+          rama main permanece en la confirmación donde estaba cuando lanzaste el
+          comando git checkout para saltar. Volvamos ahora a la rama main:
+        </p>
+        <p class="code"><code>git checkout main</code></p>
+        <img
+          src="../assets/git/vueltaaramamain.drawio.png"
+          alt="HEAD apunta a la rama main cuando hacemos el salto"
+        />
+        <p>
+          Este comando realiza dos acciones: mueve el apuntador HEAD de nuevo a
+          la rama main, y revierte los archivos de tu directorio de trabajo;
+          dejándolos tal y como estaban en la última instantánea confirmada en
+          dicha rama main. Esto supone que los cambios que hagas desde este
+          momento en adelante, van a divergir de la antigua versión del
+          proyecto. Básicamente, lo que se está haciendo es rebobinar el trabajo
+          que habías hecho temporalmente en la rama testing; de tal forma que
+          puedas avanzar en otra dirección diferente.
+        </p>
+        <p>
+          Es importante recalcar que cuando saltas a una rama en Git, los
+          archivos del Working Directory cambian. Si saltas a una rama antigua,
+          tu Working Directory retrocederá para verse como lo hacía la última
+          vez que confirmaste un cambio en dicha rama.
+        </p>
+        <p>
+          Ahora si hacemos algunos cambios más y confirmamos el historial de tu
+          proyecto diverge. Has creado una rama y saltado a ella, has trabajado
+          sobre ella; has vuelto a la rama original, y has trabajado también
+          sobre ella. Los cambios realizados en ambas sesiones de trabajo están
+          aislados en ramas independientes: puedes saltar libremente de una a
+          otra según estimes oportuno. Y todo ello simplemente con tres
+          comandos: <code>git branch</code>, <code>git checkout</code> y
+          <code>git commit</code>
+        </p>
+        <img
+          src="../assets/git/ramasdivergen.png"
+          alt="Los registros de las ramas divergen"
+        />
+        <p>Puedes ver esto utilizando el comando:</p>
+        <p class="code">
+          <code>git log --oneline --decorate --graph --all</code>
+        </p>
+        <img
+          src="../assets/git/ramasdivergencode.png"
+          alt="Representación de divergencia en consola"
+        />
+        <hr />
+        <h2>Procedimientos Básicos para Ramificar y Fusionar</h2>
+        <p>
+          Ejemplo simple de ramificar y de fusionar, con un flujo de trabajo que
+          se podría presentar en la realidad:
+        </p>
+        <ol>
+          <li>Trabajas en un sitio web.</li>
+          <li>
+            Crea una rama para un nuevo tema sobre el que quieres trabajar.
+          </li>
+          <li>Realizas algo de trabajo en esa rama.</li>
+        </ol>
+        <p>
+          <strong
+            >En este momento, recibes una llamada avisándote de un problema
+            crítico que debes resolver.</strong
+          >
+        </p>
+        <ol>
+          <li>Vuelves a la rama de producción original.</li>
+          <li>
+            Creas una nueva rama para el problema crítico y lo resuelves
+            trabajando en ella.
+          </li>
+          <li>
+            ras las pertinentes pruebas, fusionas (<code>git merge</code>) esa
+            rama y la envías (<code>git push</code>) a la rama de producción.
+          </li>
+          <li>
+            Vuelves a la rama del tema en que andabas antes de la llamada y
+            continúas tu trabajo.
+          </li>
+        </ol>
+        <p>
+          Imagina que estas trabajando en un proyecto y tienes un par de
+          confirmaciones (commit) ya realizadas.
+        </p>
+        <img src="../assets/git/ejemplo1.png" alt="" />
+        <p>
+          Decides trabajar en el problema #53, según el sistema que tu compañía
+          utiliza para llevar el seguimiento de los problemas. Para crear una
+          nueva rama y saltar a ella, en un solo paso, puedes utilizar el
+          comando <code>git checkout</code> con la opción <code>-b</code>:
+        </p>
+        <p class="code"><code>git checkout -b problema53</code></p>
+        <q>Switched to a new branch "problema53"</q>
+        <p>Es un atajo para:</p>
+        <p class="code"><code>git branch problema53</code></p>
+        <p class="code"><code>git checkout problema53</code></p>
+        <img src="../assets/git/ejemplo2.png" alt="" />
+        <p>
+          Trabajas en el sitio web y haces algunas confirmaciones de cambios
+          (commits). Con ello avanzas la rama problema53, que es la que tienes
+          activada (checked out) en este momento (es decir, a la que apunta
+          HEAD):
+        </p>
+        <img src="../assets/git/ejemplo3.png" alt="" />
+        <p>
+          Entonces, recibes una llamada avisándote de otro problema urgente en
+          el sitio web y debes resolverlo inmediatamente. Al usar Git, no
+          necesitas mezclar el nuevo problema con los cambios que ya habías
+          realizado sobre el problema #53; ni tampoco perder tiempo revirtiendo
+          esos cambios para poder trabajar sobre el contenido que está en
+          producción. Basta con saltar de nuevo a la rama main y continuar
+          trabajando a partir de allí.
+        </p>
+        <p>
+          Pero, antes de poder hacer eso, hemos de tomar en cuenta que si
+          tenemos cambios aún no confirmados en el directorio de trabajo o en el
+          área de preparación, Git no nos permitirá saltar a otra rama con la
+          que podríamos tener conflictos. Lo mejor es tener siempre un estado de
+          trabajo limpio y despejado antes de saltar entre ramas. Y, para ello,
+          tenemos algunos procedimientos (stash y corregir confirmaciones). Por
+          ahora, como tenemos confirmados todos los cambios, podemos saltar a la
+          rama main sin problemas:
+        </p>
+        <p class="code"><code>git checkout main</code></p>
+        <q>Switched to a new branch "main"</q>
+
+        <p>
+          Tras esto, tendrás el directorio de trabajo exactamente igual a como
+          estaba antes de comenzar a trabajar sobre el problema #53 y podrás
+          concentrarte en el nuevo problema urgente. Es importante recordar que
+          Git revierte el directorio de trabajo exactamente al estado en que
+          estaba en la confirmación (commit) apuntada por la rama que activamos
+          (checkout) en cada momento. Git añade, quita y modifica archivos
+          automáticamente para asegurar que tu copia de trabajo luce exactamente
+          como lucía la rama en la última confirmación de cambios realizada
+          sobre ella.
+        </p>
+        <p>
+          A continuación, es momento de resolver el problema urgente. Vamos a
+          crear una nueva rama hotfix, sobre la que trabajar hasta resolverlo:
+        </p>
+        <p class="code"><code>git checkout -b hotfix</code></p>
+        <q>Switched to a new branch "hotfix"</q>
+        <p>***Resuelve el problema***</p>
+        <p class="code"><code>git commit -a -m "fixed the problem"</code></p>
+        <img src="../assets/git/ejemplo4.png" alt="" />
+        <p>
+          Puedes realizar las pruebas oportunas, asegurarte de que la solución
+          es correcta, e incorporar los cambios a la rama main para ponerlos en
+          producción. Esto se hace con el comando git merge:
+        </p>
+        <p class="code"><code>git checkout main</code></p>
+        <p class="code"><code>git merge hotfix</code></p>
+        <p>
+          Notarás la frase “Fast forward” (“Avance rápido”, en inglés) que
+          aparece en la salida del comando. Git ha movido el apuntador hacia
+          adelante, ya que la confirmación apuntada en la rama donde has
+          fusionado estaba directamente arriba respecto a la confirmación
+          actual. Dicho de otro modo: cuando intentas fusionar una confirmación
+          con otra confirmación accesible siguiendo directamente el historial de
+          la primera; Git simplifica las cosas avanzando el puntero, ya que no
+          hay ningún otro trabajo divergente a fusionar. Esto es lo que se
+          denomina “avance rápido” (“fast forward”).
+        </p>
+        <figure>
+          <img
+            src="../assets/git/ejemplo5.png"
+            alt="Tras la fusión (merge), la rama main apunta al mismo sitio que la rama hotfix."
+          />
+          <figcaption>
+            Tras la fusión (merge), la rama main apunta al mismo sitio que la
+            rama hotfix.
+          </figcaption>
+        </figure>
+        <p>
+          Ahora, los cambios realizados están ya en la instantánea (snapshot) de
+          la confirmación (commit) apuntada por la rama main. Y puedes
+          desplegarlos.
+        </p>
+        <p>
+          Tras haber resuelto el problema urgente que había interrumpido tu
+          trabajo, puedes volver a donde estabas. Pero antes, es importante
+          borrar la rama hotfix, ya que no la vamos a necesitar más, puesto que
+          apunta exactamente al mismo sitio que la rama master. Esto lo puedes
+          hacer con la opción <code>-d</code> del comando
+          <code>git branch</code>:
+        </p>
+        <p class="code"><code>git branch -d hotfix</code></p>
+        <p>
+          Y, con esto, ya estás listo para regresar al trabajo sobre el problema
+          #53.
+        </p>
       </div>
 
       <nav class="section-nav">
